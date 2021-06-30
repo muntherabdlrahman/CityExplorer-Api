@@ -30,30 +30,7 @@ app.get('/weather', (req, res) => {
       return new ForeCast(item)
     });
     res.json(forecastArr)
-    if (forecastArr === 0) {
-      res.status(500).send('there is something wrong')
-    }
-
-
-  });
-
-
-  //  try{
-  //    let findData=()=>{
-  //      let city=weather.find((city,index)=>{
-  //        return(city.lat===Number(lat)&& city.lon===Number(lon))
-  //      })
-  //      return city.data.map(item=>{
-  //        return new ForeCast(item)
-  //      })
-
-  //    }
-  //    res.json(findData());
-  //  }catch(error){
-  //    res.status(500).send('there is something wrong')
-  //  }
-
-
+  }).catch(error=>res.send({message:error.message}));
 });
 
 
@@ -70,11 +47,9 @@ app.get('/movies', (req, res) => {
     });
 
     res.json(callMovies);
-    if(callMovies===0){
-      res.status(500).send('there is something wrong')
-    }
-  });
-})
+    
+  }).catch(error=>res.send({message:error.message}));
+});
 
 class ForeCast {
   constructor(weatherData) {
